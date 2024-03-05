@@ -1,11 +1,15 @@
 package com.Cats.index.RestController;
 
+import com.Cats.index.Entity.Empresa;
 import com.Cats.index.Entity.User;
-import com.Cats.index.Request.ServiceRequest;
+import com.Cats.index.Request.UserRequest;
+import com.Cats.index.Response.UserResponse;
 import com.Cats.index.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -23,24 +27,32 @@ public class UserRestController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<User> guardarUsuario(@RequestBody User user){
-        return ResponseEntity.ok(userService.saveUser(user));
+    public ResponseEntity<UserResponse> guardarUsuario(@RequestBody UserRequest request){
+        return ResponseEntity.ok(userService.saveUser(request));
     }
 
-    @PostMapping("/firstSave")
-    public ResponseEntity<User> firstSave(@RequestBody User user){
-        return ResponseEntity.ok(userService.saveFirstUser(user));
+    @PostMapping("/checkSuper")
+    public boolean checkSuper(@RequestBody Long userId){
+        return userService.checkSuper(userId);
     }
 
-    @PostMapping("/checkUsername")
-    public boolean checkUsername(@RequestBody String username){
-        return userService.checkUsername(username);
+    @GetMapping("/list")
+    public List<User> list(){
+        return userService.listarUsuarios();
     }
 
-    @PostMapping("/habilityService")
-    ResponseEntity<String> habilityService(ServiceRequest serviceRequest){
-        return ResponseEntity.ok(userService.habilityServices(serviceRequest));
+    @GetMapping("/get/{id}")
+    public User getEmpresa(@PathVariable Integer id){
+        return userService.findById(id);
     }
 
+    @GetMapping("/delete/{id}")
+    public UserResponse delete(@PathVariable Integer id){
+        return userService.eliminar(id);
+    }
 
+    @GetMapping("/getCompanyByUserId/{id}")
+    public Empresa getEmpresaByUserId(@PathVariable Long id){
+        return userService.findCompanyByUserId(id);
+    }
 }

@@ -31,7 +31,7 @@ public class AuthController {
 
     @GetMapping("/create")
     public ResponseEntity<AuthResponse> create(){
-        RegisterRequest request = new RegisterRequest("admin","admin","Administrador", Role.ADMIN);
+        RegisterRequest request = new RegisterRequest("admin","admin","Administrador", Role.SUPERADMIN);
         return ResponseEntity.ok(authService.register(request));
     }
 

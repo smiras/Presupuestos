@@ -13,5 +13,5 @@ import lombok.NoArgsConstructor;
 public class ServiceRequest {
 
     private Services service;
-    private Long userId;
+    private Long empresaId;
 }

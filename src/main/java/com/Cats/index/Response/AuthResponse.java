@@ -1,7 +1,7 @@
 package com.Cats.index.Response;
 
+import com.Cats.index.Entity.Empresa;
 import com.Cats.index.Enum.Role;
-import com.Cats.index.Enum.Services;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,5 +18,7 @@ public class AuthResponse {
     private String token;
     private Boolean active;
     private Role rol;
-    private List<Services> services;
+    private Empresa empresa;
+    private String mensaje;
+    private Long userId;
 }

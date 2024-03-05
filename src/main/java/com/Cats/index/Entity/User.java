@@ -2,6 +2,7 @@ package com.Cats.index.Entity;
 
 import com.Cats.index.Enum.Role;
 import com.Cats.index.Enum.Services;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,12 +34,10 @@ public class User implements UserDetails {
     private String name;
     private Role role;
 
-    private String empresa;
-    private String domicilio;
-    private String telefono;
-    private String email;
-
-    private List<Services> services;
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    @JsonIgnore
+    private Empresa empresa;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

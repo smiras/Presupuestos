@@ -1,6 +1,7 @@
 package com.Cats.index.Service;
 
 import com.Cats.index.Entity.User;
+import com.Cats.index.Enum.Role;
 import com.Cats.index.Repository.UserRepository;
 import com.Cats.index.Request.LoginRequest;
 import com.Cats.index.Request.RegisterRequest;
@@ -29,11 +30,24 @@ public class AuthService {
         UserDetails user = userRepository.findByUsername(request.getUsername()).orElseThrow();
         User usuario = userRepository.findByUsername(request.getUsername()).orElseThrow();
         String token=jwtService.getToken(user);
+        String mensaje;
+        switch (usuario.getRole()) {
+            case SUPERADMIN :
+                mensaje = "admin/control.html";
+                break;
+            case ADMIN, USER:
+                mensaje = "user/index.html";
+                break;
+            default: mensaje = "user";
+                break;
+        }
         return AuthResponse.builder()
                 .token(token)
                 .rol(usuario.getRole())
                 .active(usuario.getActive())
-                .services(usuario.getServices())
+                .empresa(usuario.getEmpresa())
+                .mensaje(mensaje)
+                .userId(usuario.getId())
                 .build();
     }
 
