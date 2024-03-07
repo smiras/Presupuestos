@@ -1,7 +1,6 @@
 package com.Cats.index.Entity;
 
 import com.Cats.index.Enum.Role;
-import com.Cats.index.Enum.Services;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

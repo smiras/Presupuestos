@@ -1,6 +1,6 @@
 package com.Cats.index.Request;
 
-import com.Cats.index.Enum.Services;
+import com.Cats.index.Entity.Aplication;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ServiceRequest {
+public class AplicationRequest {
 
-    private Services service;
+    private Aplication aplication;
     private Long empresaId;
 }

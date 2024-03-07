@@ -1,14 +1,13 @@
 package com.Cats.index.Service;
 
+import com.Cats.index.Entity.Aplication;
 import com.Cats.index.Entity.Empresa;
 import com.Cats.index.Entity.User;
-import com.Cats.index.Enum.Services;
 import com.Cats.index.Repository.EmpresaRepository;
-import com.Cats.index.Repository.UserRepository;
 import com.Cats.index.Request.EmpresaRequest;
-import com.Cats.index.Request.ServiceRequest;
+import com.Cats.index.Request.AplicationRequest;
 import com.Cats.index.Response.EmpresaResponse;
-import com.Cats.index.Response.ServiceResponse;
+import com.Cats.index.Response.AplicationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -78,39 +77,36 @@ public class EmpresaService {
         return empresa.map(Empresa::getUsuarios).orElse(new ArrayList<>());
     }
 
-    public ServiceResponse addService(ServiceRequest request){
+    public AplicationResponse addService(AplicationRequest request){
        Empresa empresa = empresaRepository.findById(request.getEmpresaId());
-        List<Services> services;
+        List<Aplication> aplications;
         String mensaje;
         boolean creado = true;
-       if(empresa.getServices()==null){
-           services = new ArrayList<>();
-           services.add(request.getService());
+       if(empresa.getAplications()==null){
+           aplications = new ArrayList<>();
+           aplications.add(request.getAplication());
            mensaje = "Servicio añadido correctamente";
        } else {
-           services = empresa.getServices();
-           if (isServiceInList(request.getService(), services)) {
+           aplications = empresa.getAplications();
+           if (isServiceInList(request.getAplication(), aplications)) {
                mensaje = "El servicio ya se encuentra habilitado";
                creado = false;
            } else {
-               services.add(request.getService());
-               empresa.setServices(services);
+               aplications.add(request.getAplication());
+               empresa.setAplications(aplications);
                mensaje = "Servicio añadido correctamente";
            }
        }
        empresaRepository.save(empresa);
-        return ServiceResponse.builder()
+        return AplicationResponse.builder()
                 .creado(creado)
                 .mensaje(mensaje)
                 .build();
     }
 
-    //TODO
-    //delete Services
-
-    public static boolean isServiceInList(Services service, List<Services> serviceList) {
-        for (Services s : serviceList) {
-            if (s.equals(service)) {
+    public static boolean isServiceInList(Aplication aplications, List<Aplication> serviceApp) {
+        for (Aplication a : serviceApp) {
+            if (a.equals(aplications)) {
                 return true;
             }
         }

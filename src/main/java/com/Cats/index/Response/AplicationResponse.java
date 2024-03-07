@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ServiceResponse {
+public class AplicationResponse {
 
     private Boolean creado;
     private String mensaje;

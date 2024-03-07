@@ -3,9 +3,9 @@ package com.Cats.index.RestController;
 import com.Cats.index.Entity.Empresa;
 import com.Cats.index.Entity.User;
 import com.Cats.index.Request.EmpresaRequest;
-import com.Cats.index.Request.ServiceRequest;
+import com.Cats.index.Request.AplicationRequest;
 import com.Cats.index.Response.EmpresaResponse;
-import com.Cats.index.Response.ServiceResponse;
+import com.Cats.index.Response.AplicationResponse;
 import com.Cats.index.Service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -46,8 +46,8 @@ public class EmpresaRestController {
         return empresaService.getUsers(id);
     }
 
-    @PostMapping("/addService")
-    public ResponseEntity<ServiceResponse> addService(@RequestBody ServiceRequest request){
+    @PostMapping("/addApp")
+    public ResponseEntity<AplicationResponse> addService(@RequestBody AplicationRequest request){
         return ResponseEntity.ok(empresaService.addService(request));
     }
 }
