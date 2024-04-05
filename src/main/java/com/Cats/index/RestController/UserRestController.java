@@ -55,4 +55,9 @@ public class UserRestController {
     public Empresa getEmpresaByUserId(@PathVariable Long id){
         return userService.findCompanyByUserId(id);
     }
+
+    @PostMapping("/checkUsername")
+    public Boolean checkUsername(@RequestBody UserRequest user){
+        return userService.checkUsername(user.getUsername());
+    }
 }

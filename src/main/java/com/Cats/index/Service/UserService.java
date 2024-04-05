@@ -96,4 +96,8 @@ public class UserService {
         User user = userRepository.findById(userId);
         return user.getEmpresa();
     }
+
+    public Boolean checkUsername(String username){
+        return userRepository.existsByUsername(username);
+    }
 }
