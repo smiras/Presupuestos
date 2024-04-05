@@ -72,9 +72,9 @@ public class EmpresaService {
                 .build();
     }
 
-    public List<User> getUsers(Integer empresaId){
-        Optional<Empresa> empresa = empresaRepository.findById(empresaId);
-        return empresa.map(Empresa::getUsuarios).orElse(new ArrayList<>());
+    public List<User> getUsers(Long empresaId){
+        Empresa empresa = empresaRepository.findById(empresaId);
+        return empresa.getUsuarios();
     }
 
     public AplicationResponse addService(AplicationRequest request){
@@ -113,4 +113,7 @@ public class EmpresaService {
         return false;
     }
 
+    public Empresa findByUserId(Long userid){
+        return empresaRepository.findByUserId(userid);
+    }
 }

@@ -1,5 +1,6 @@
 package com.Cats.index.Repository.Presupuestos;
 
+import com.Cats.index.Entity.Empresa;
 import com.Cats.index.Entity.Presupuestos.Presupuesto;
 import com.Cats.index.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +14,6 @@ public interface PresupuestoRepository extends JpaRepository<Presupuesto, Intege
     int findCantAceiteById(Long id);
 
     List<Presupuesto> findAllByUser(User user);
+
+    List<Presupuesto> findAllByEmpresa(String empresa);
 }

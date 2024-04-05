@@ -42,7 +42,7 @@ public class EmpresaRestController {
     }
 
     @GetMapping("/getUsers/{id}")
-    public List<User> getUsers(@PathVariable Integer id){
+    public List<User> getUsers(@PathVariable Long id){
         return empresaService.getUsers(id);
     }
 
@@ -50,4 +50,10 @@ public class EmpresaRestController {
     public ResponseEntity<AplicationResponse> addService(@RequestBody AplicationRequest request){
         return ResponseEntity.ok(empresaService.addService(request));
     }
+
+    @GetMapping("/getByUserId/{userId}")
+    public Empresa getByUserId(@PathVariable Long userId){
+        return empresaService.findByUserId(userId);
+    }
+
 }

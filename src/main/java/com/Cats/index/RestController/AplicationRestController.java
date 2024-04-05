@@ -22,9 +22,9 @@ public class AplicationRestController {
         return aplicationService.getAll();
     }
 
-    @GetMapping("/getServicesByCompany/{empresaId}")
-    public List<Aplication> getAplicationsByCompany(@PathVariable Long empresaId) {
-        return aplicationService.getAplicationsByCompany(empresaId);
+    @GetMapping("/getServicesByCompany/{usuarioId}")
+    public List<Aplication> getAplicationsByCompany(@PathVariable Long usuarioId) {
+        return aplicationService.getAplicationsByCompany(usuarioId);
     }
 
     @PostMapping("/save")

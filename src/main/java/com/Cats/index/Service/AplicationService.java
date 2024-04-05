@@ -2,8 +2,10 @@ package com.Cats.index.Service;
 
 import com.Cats.index.Entity.Aplication;
 import com.Cats.index.Entity.Empresa;
+import com.Cats.index.Entity.User;
 import com.Cats.index.Repository.AplicationRepository;
 import com.Cats.index.Repository.EmpresaRepository;
+import com.Cats.index.Repository.UserRepository;
 import com.Cats.index.Request.AplicationRequest;
 import com.Cats.index.Response.AplicationResponse;
 import com.Cats.index.Response.EmpresaResponse;
@@ -23,12 +25,15 @@ public class AplicationService {
     @Autowired
     private AplicationRepository aplicationRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public List<Aplication> getAll(){
         return aplicationRepository.findAll();
     }
 
-    public List<Aplication> getAplicationsByCompany(Long empresaId) {
-        Empresa empresa = empresaRepository.findById(empresaId);
+    public List<Aplication> getAplicationsByCompany(Long usuarioId) {
+        Empresa empresa = empresaRepository.findById(usuarioId);
         return empresa.getAplications();
     }
 
